@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-
-// Class used for creating locations that will be used in the "map" ArrayList
+// Class used for creating the locations the player explores
 public class Location{
-  private static String terrain = "";
-  private static Enemy enemies = null;
-  private static Treasure treasure = null;
-  private static Shop shop = null;
+  private String terrain = "";
+  private Enemy enemy = null;
+  private Treasure treasure = null;
+  private Shop shop = null;
 
   // Constructs an object and assigns its instance variables based on its terrain
   public Location (){
@@ -14,7 +12,7 @@ public class Location{
           shop = Shop.chooseShop();
       }
       else if (terrain.equals("Forest")){
-          int rand3 = (int)(Math.random()*100 +1)
+          int rand3 = (int)(Math.random()*100 +1);
           if (rand3 <= 33){
               enemy = Enemy.chooseForestEnemy();
           }
@@ -24,7 +22,7 @@ public class Location{
       }
 
       else if (terrain.equals("Meadow")){
-          int rand3 = (int)(Math.random()*100+1)
+          int rand3 = (int)(Math.random()*100+1);
           if (rand3 <= 20){
               enemy = Enemy.chooseMeadowEnemy();
               }
@@ -32,9 +30,9 @@ public class Location{
               shop = Shop.chooseShop();
           }
       }
-    
+
       else if (terrain.equals("Mountains")){
-          int rand3 = (int)(Math.random()*100+1)
+          int rand3 = (int)(Math.random()*100+1);
           if (rand3 <= 50){
               enemy = Enemy.chooseMountainEnemy();
           }
@@ -44,7 +42,7 @@ public class Location{
       }
 
       else if (terrain.equals("Volcano")){
-          int rand3 = (int)(Math.random()*100+1)
+          int rand3 = (int)(Math.random()*100+1);
           if (rand3 <= 66){
               enemy = Enemy.chooseVolcanoEnemy();
           }
@@ -52,9 +50,9 @@ public class Location{
               treasure = Treasure.chooseTreasure();
           }
       }
-    
+
       else if (terrain.equals("Tundra")){
-          int rand3 = (int)(Math.random()*100+1)
+          int rand3 = (int)(Math.random()*100+1);
           if (rand3 <= 66){
               enemy = Enemy.chooseTundraEnemy();
           }
@@ -62,66 +60,33 @@ public class Location{
               shop = Shop.chooseShop();
           }
       }
-    
+
+      // Dungeons always have a guard and a reward for beating it
+      else if (terrain.equals("Dungeon")){
+          enemy = Enemy.chooseDungeonEnemy();
+          treasure = new Treasure(20, 50);
+      }
+
       else if (terrain.equals("Dragon's Lair")){
-          Enemy dragon = new Enemy(8, 35, "Dragon");
+          enemy = new Enemy(8, 35, "Dragon");
       }
   }
 
-
-
-
-  /*
-  public Location (String terrain, Enemy enemies){
-      this.terrain = terrain;
-      this.enemies = enemies;
+  public String getTerrain(){
+      return terrain;
   }
 
-
-
-
-  public Location (String terrain, Treasure treasure){
-      this.terrain = terrain;
-      this.treasure = treasure;
+  public Enemy getEnemy(){
+      return enemy;
   }
 
-
-
-
-  public Location (String terrain, Shop shop){
-      this.terrain = terrain;
-      this.shop = shop;
+  public Treasure getTreasure(){
+      return treasure;
   }
 
-
-
-
-  public Location (String terrain, Enemy enemies, Treasure treasure){
-      this.terrain = terrain;
-      this.enemies = enemies;
-      this.treasure = treasure;
+  public Shop getShop(){
+      return shop;
   }
-
-
-
-
-  public Location (String terrain, Enemy enemies, Shop shop){
-      this.terrain = terrain;
-      this.enemies = enemies;
-      this.shop = shop;
-  }
-
-
-
-
-  // Adds another location, "exit" to the "map" ArrayList
-  public void addExit(ArrayList map, Location exit){
-      map.add(exit);
-  }
-      */
-
-
-
 
   // Randomly selects a terrain to be used in a new Location object and to initialize enocunter classes
   public static String chooseTerrain(){
@@ -135,11 +100,11 @@ public class Location{
       }
 
       else if (rand <= 65){
-          return "Mountains"
+          return "Mountains";
       }
 
       else if (rand <= 80){
-          return = "Town";
+          return "Town";
       }
 
       else if (rand <= 95){
@@ -151,7 +116,7 @@ public class Location{
       }
 
       else if (rand <= 99){
-          return "Dungeon"
+          return "Dungeon";
       }
       return "Dragon's Lair";
   }

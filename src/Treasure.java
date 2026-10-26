@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-// Class used for creating locations that will be used in the "map" ArrayList
+// Class used for creating the treasure chests found at some locations
 public class Treasure{
   private int coins = 0;
   private Equipment equip = null;
@@ -10,6 +9,10 @@ public class Treasure{
       if (rand <= 4){
            equip = Equipment.chooseEquip();
       }
+  }
+
+  public static Treasure chooseTreasure(){
+      return new Treasure(5, 25);
   }
 
    public Equipment getEquip(){
