@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+// Class used for creating locations that will be used in the "map" ArrayList
+public class Treasure{
+  private int coins = 0;
+  private Equipment equip = null;
+
+  public Treasure(int minCoins, int maxCoins){
+      coins = (int)(Math.random() * ((maxCoins+1)-minCoins) + minCoins);
+      int rand = (int)(Math.random() * 10 + 1);
+      if (rand <= 4){
+           equip = Equipment.chooseEquip();
+      }
+  }
+
+   public Equipment getEquip(){
+       return equip;
+   }
+
+  public int getCoins(){
+      return coins;
+  }
+}
