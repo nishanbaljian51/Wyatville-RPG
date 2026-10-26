@@ -20,6 +20,11 @@ public class Game{
            printNWait("----- Area " + area + " -----");
            Location location = new Location();
            printNWait("You arrive at the " + location.getTerrain() + ".");
+           // Traveling lets you catch your breath a little
+           if (area > 1 && player.getCurrHealth() < player.getMaxHealth()){
+               player.addCurrHealth(1);
+               printNWait("You catch your breath on the way here (+1 health).");
+           }
            boolean somethingHere = false;
 
            Enemy enemy = location.getEnemy();
@@ -53,6 +58,15 @@ public class Game{
                }
            }
 
+           // Towns have an inn where you can rest back to full health for free
+           if (location.getTerrain().equals("Town") && player.getCurrHealth() < player.getMaxHealth()){
+               printNWait("There's an inn in town. Would you like to rest for the night? (yes/no)");
+               if (getYesOrNoResponse(5).equals("yes")){
+                   player.addCurrHealth(player.getMaxHealth());
+                   printNWait("You wake up feeling refreshed. Health fully restored!");
+               }
+           }
+
            if (!somethingHere){
                printNWait("It's quiet here. Nothing to see but the " + location.getTerrain() + ".");
            }
@@ -77,7 +91,7 @@ public class Game{
            printNWait("Do you want to attack or run?");
            String choice = getSpecificResponse("attack", "run", 5);
            if (choice.equals("run")){
-               if (Math.random() < 0.5){
+               if (Math.random() < 0.7){
                    printNWait("You got away!");
                    return "fled";
                }
@@ -89,6 +103,9 @@ public class Game{
                if (enemy.isDead()){
                    printNWait("You defeated the " + enemy.getName() + " and found " + reward + " coins!");
                    player.addCoins(reward);
+                   // Every win toughens you up a little
+                   player.addMaxHealth(1);
+                   printNWait("The battle made you tougher! Max Health +1.");
                    return "won";
                }
                printNWait("The " + enemy.getName() + " has " + enemy.getHealth() + " health left.");

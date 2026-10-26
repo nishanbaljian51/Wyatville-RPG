@@ -68,7 +68,7 @@ public class Location{
       }
 
       else if (terrain.equals("Dragon's Lair")){
-          enemy = new Enemy(8, 35, "Dragon");
+          enemy = new Enemy(6, 30, "Dragon");
       }
   }
 
@@ -115,7 +115,7 @@ public class Location{
           return "Tundra";
       }
 
-      else if (rand <= 99){
+      else if (rand <= 97){
           return "Dungeon";
       }
       return "Dragon's Lair";

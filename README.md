@@ -8,7 +8,8 @@ A text-based adventure game written in Java. Build your hero, explore the random
 2. **Explore.** Every area is randomly chosen: Forest, Meadow, Mountains, Town, Volcano, Tundra, Dungeon, or the rare Dragon's Lair.
 3. **Fight.** Monsters get tougher the farther you wander, from Weak Wolves in the Meadow to Lava Hounds and Ice Dragons. Type `attack` or `run`.
 4. **Loot and shop.** Treasure chests hold coins and sometimes gear. Shops sell one item per visit: Swords add damage, Shields add max health, and Potions heal.
-5. **Win** by defeating the Dragon. If your health hits 0, it's game over.
+5. **Recover.** You regain 1 health each time you travel, every victory raises your Max Health by 1, and Towns have an inn where you can rest back to full health.
+6. **Win** by defeating the Dragon. If your health hits 0, it's game over.
 
 ## Running the game
 
